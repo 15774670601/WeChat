@@ -1,0 +1,249 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
+    <modelVersion>4.0.0</modelVersion>  
+    <parent>
+        <groupId>org.springframework.boot</groupId>  
+        <artifactId>spring-boot-starter-parent</artifactId>  
+        <version>1.5.2.RELEASE</version>  
+    </parent>  
+  
+    <groupId>com.newculture</groupId>
+    <artifactId>mybatis</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>chamc</name>
+    <url>http://maven.apache.org</url>
+  
+  
+    <properties>  
+        <commons-lang3.version>3.3.2</commons-lang3.version>  
+        <commons-io.version>1.3.2</commons-io.version>  
+        <ojdbc6.version>11.2.0.3</ojdbc6.version>  
+        <mail.version>1.4</mail.version>  
+        <java.version>1.7</java.version>  
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+    </properties>  
+  
+    <dependencies>  
+  
+  
+        <dependency>  
+            <groupId>cglib</groupId>  
+            <artifactId>cglib</artifactId>  
+            <version>2.2.2</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>com.alibaba</groupId>  
+            <artifactId>fastjson</artifactId>  
+            <version>1.1.41</version>  
+        </dependency>  
+  
+        <!-- Spring Boot Web 依赖 -->  
+        <dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-starter-web</artifactId>  
+        </dependency>   
+        
+        <!-- Spring Boot Mybatis 依赖 -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.3.0</version>
+	    </dependency>
+        
+        <!-- Pagehelper分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>  
+            <artifactId>pagehelper</artifactId>  
+            <version>4.0.0</version>  
+        </dependency>  
+  
+        <!-- oracle 11G 依赖 -->  
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.1.0</version>
+        </dependency>
+  
+  
+        <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->  
+        <dependency>  
+            <groupId>com.alibaba</groupId>  
+            <artifactId>druid</artifactId>  
+            <version>1.0.28</version>  
+        </dependency>  
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->  
+        <dependency>  
+            <groupId>com.google.code.gson</groupId>  
+            <artifactId>gson</artifactId>  
+        </dependency>  
+
+        <!-- 支持 @ConfigurationProperties 注解 -->  
+        <dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-configuration-processor</artifactId>  
+            <optional>true</optional>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>junit</groupId>  
+            <artifactId>junit</artifactId>  
+            <scope>test</scope>  
+        </dependency>  
+        
+        <!-- 引入Junit4 -->
+  		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-test</artifactId>
+		    <scope>test</scope>
+		</dependency>
+  	
+        <!-- tomcat 的支持. -->  
+  
+        <dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-starter-tomcat</artifactId>  
+            <scope>provided</scope>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.apache.tomcat.embed</groupId>  
+            <artifactId>tomcat-embed-jasper</artifactId>  
+            <scope>provided</scope>  
+        </dependency>    
+  
+        <!-- mail -->  
+        <dependency>  
+            <groupId>javax.mail</groupId>  
+            <artifactId>mail</artifactId>  
+            <version>${mail.version}</version>  
+        </dependency>  
+  
+        <!--httpclient -->  
+        <dependency>  
+            <groupId>org.apache.httpcomponents</groupId>  
+            <artifactId>httpclient</artifactId>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>commons-io</groupId>  
+            <artifactId>commons-io</artifactId>  
+            <version>2.4</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>javax.servlet</groupId>  
+            <artifactId>jstl</artifactId>  
+        </dependency>  
+  		
+  		<!-- 模板引擎 依赖 -->
+  		<!-- <dependency>
+		   <groupId>org.springframework.boot</groupId>
+		   <artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency> -->
+		
+		<!-- Spring Boot Freemarker 依赖 -->  
+        <dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-starter-freemarker</artifactId>  
+        </dependency>
+  		
+  		<!-- servlet API -->
+  		<dependency>
+		    <groupId>javax</groupId>
+		    <artifactId>javaee-api</artifactId>
+		    <version>7.0</version>
+		</dependency>
+  		
+        <!-- 加密算法 -->  
+        <dependency>  
+            <groupId>commons-codec</groupId>  
+            <artifactId>commons-codec</artifactId>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-resources-plugin</artifactId>  
+            <version>2.4.3</version>  
+        </dependency>  
+  
+  
+        <dependency>  
+            <groupId>org.bouncycastle</groupId>  
+            <artifactId>bcprov-jdk15on</artifactId>  
+            <version>1.54</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-devtools</artifactId>  
+            <optional>true</optional>  
+            <scope>true</scope>  
+        </dependency>  
+  
+  
+    </dependencies>  
+    <build>  
+        <finalName>SpringBootTestJar</finalName>  
+  		
+        <resources>  
+            <resource>  
+                <directory>${basedir}/src/main/resources</directory>  
+                <includes>  
+                    <include>**/**</include>  
+                </includes>  
+                <filtering>false</filtering>  
+            </resource>  
+            <resource>  
+                <directory>${basedir}/src/main/webapp</directory>  
+                <targetPath>META-INF/resources</targetPath>  
+                <includes>  
+                    <include>**/**</include>  
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+	        
+	      <!-- 直接运行项目的插件，我们可以直接mvn spring-boot:run运行 -->
+             <!--  <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+	        
+            <plugin>  
+                <groupId>org.springframework.boot</groupId>  
+                <artifactId>spring-boot-maven-plugin</artifactId>  
+                <version>1.4.2.RELEASE</version>  
+                <dependencies>  
+                    <dependency>  
+                        <groupId>org.springframework</groupId>  
+                        <artifactId>springloaded</artifactId>  
+                        <version>1.2.6.RELEASE</version>  
+                    </dependency>  
+                </dependencies>  
+                <configuration>  
+                    <fork>true</fork>
+                </configuration> 
+            </plugin>  --> 
+            
+            <!-- 测试待删除 -->
+            <plugin>  
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--这里需要写SpringBoot的主方法所在类的路径--> 
+                <configuration>
+                    <mainClass>com.example.SpringBootText.SpringBootTestApplication</mainClass>  
+                </configuration>  
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>  
+                    </execution>  
+                </executions>  
+            </plugin>  
+        </plugins>  
+        <defaultGoal>compile</defaultGoal>  
+    </build>  
+</project>  

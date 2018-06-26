@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.security.WeChat.Dao.testMapper" ><!-- namespace： 要精确到具体的Mapper类 -->
+	
+	<!-- sql语句不能包含 ';' 符号 -->
+	<!-- 查询所有数据 -->
+    <select id="getTestList" resultType="com.security.WeChat.bean.test">
+        SELECT * FROM test
+    </select>
+    
+    <!-- 按照name查询age -->
+    <!-- <select id="getTestName" resultType="string">
+    	SELECT AGE FROM test WHERE name = #{name}
+    </select> -->
+    
+    <!-- 分页方法 -->
+    <!-- <select id="getUserArticlesByLimit" parameterType="int" resultMap="resultUserArticleList">
+        select user.id,user.userName,user.userAddress,article.id as aid,article.title,article.content from user,article where user.id=article.userid and user.id=#{arg0} limit #{arg1},#{arg2}
+    </select> -->
+    
+</mapper>
