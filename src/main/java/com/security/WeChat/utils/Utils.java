@@ -57,4 +57,17 @@ public class Utils {
         }
 
     }
+    
+    /**
+     * 获取页数用方法
+     * 
+     */
+  	public int getCount(double count) {  
+  		count = count/5;
+  		if((int)count == count){
+  			return (int)count;
+  		}else{
+  			return (int)count+1;
+  		}
+      }  
 }

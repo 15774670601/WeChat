@@ -149,6 +149,13 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>  
         </dependency>
   		
+  		<!-- lombok支持 -->
+        <dependency>
+        	<groupId>org.projectlombok</groupId>
+        	<artifactId>lombok</artifactId>
+        	<optional>true</optional>
+        </dependency>
+  		
   		<!-- servlet API -->
   		<dependency>
 		    <groupId>javax</groupId>

@@ -12,8 +12,12 @@ import java.util.Scanner;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.json.JSONObject;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -34,9 +38,10 @@ import com.security.WeChat.utils.Utils;
 
 
 //@RestController //该注解表示返回的内容都是HTTP Content不会被模版引擎处理
+@Slf4j
 @Controller	//使用模板引擎需要使用@Controller注解
 @SpringBootApplication
-@MapperScan("com.example.SpringBootText.Dao")
+@MapperScan("com.security.WeChat.Dao")
 public class WeChatApplication {
 	
 	@Autowired  
@@ -48,12 +53,17 @@ public class WeChatApplication {
 	@Autowired
 	test UserT;
 	
+	//工具类
 	Utils utils = new Utils();
 	
+	//日志
+	private final static Logger logger = LoggerFactory.getLogger(WeChatApplication.class);
+	
 	public static void main(String[] args) {
-		
+		logger.info("SpringBoot程序正在启动...");
 		//SpringBoot框架Run方法
 		SpringApplication.run(WeChatApplication.class, args);
+		logger.info("SpringBoot程序完成启动...");
 	}
 	
 	
@@ -85,7 +95,7 @@ public class WeChatApplication {
 				//listId
 			}
 			//获取页数
-			int num = getCount(count);
+			int num = utils.getCount(count);
 			//填充视图
 			model.put("num", num);
 			model.put("list",testList);
@@ -94,17 +104,6 @@ public class WeChatApplication {
 		return "index";
 	}
 	
-	
-	
-	//获取页数用方法
-	public int getCount(double count) {  
-		count = count/5;
-		if((int)count == count){
-			return (int)count;
-		}else{
-			return (int)count+1;
-		}
-    }  
 	
 	/**
 	 * 
@@ -123,21 +122,5 @@ public class WeChatApplication {
 		
 		return null;
 	}
-	
-	 /**利用MD5进行加密
-     * @param str  待加密的字符串
-     * @return  加密后的字符串
-     * @throws NoSuchAlgorithmException  没有这种产生消息摘要的算法
-     * @throws UnsupportedEncodingException  
-     */
-  /*  public String EncoderByMd5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException{
-        //确定计算方法
-        MessageDigest md5=MessageDigest.getInstance("MD5");
-        BASE64Encoder base64en = new BASE64Encoder();
-        //加密后的字符串
-        String newstr=base64en.encode(md5.digest(str.getBytes("utf-8")));
-        return newstr;
-    }*/
-	
 	
 }
