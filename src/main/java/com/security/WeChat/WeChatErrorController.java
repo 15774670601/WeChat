@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.security.WeChat.utils.FinalUtils;
+
 /**
  * Spring Boot 全局错误映射类
  * 
  * */
 @Controller
 @SuppressWarnings("all")
-public class WeChatErrorController implements ErrorController {
+public class WeChatErrorController extends FinalUtils implements ErrorController{
 	
 	private static final String ERROR_PATH = "/error";  
 	   
@@ -24,7 +26,7 @@ public class WeChatErrorController implements ErrorController {
 	@GetMapping(value=ERROR_PATH)
 	public String handleError(){
 		
-		System.out.println("捕捉到 404 错误");
+		logger.error("Http请求可能发生异常...");
 		return "HttpError/404";
 	}
 	
