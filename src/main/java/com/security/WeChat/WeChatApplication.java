@@ -72,55 +72,20 @@ public class WeChatApplication {
 	@SuppressWarnings("all")
 	public String getHello(HttpServletRequest request,Map<String, Object> model){
 		
-		utils.md5Password("123");
+		//获取到登录信息
+		String loginState = (String)request.getSession().getAttribute("loginState");
 		
-		//判断请求方式
-		if(utils.Get(request)){
-			System.out.println("GET请求..");
-			//返回主页
-			List<test> testTable = testServiceImpl.getTestTable();
-			System.out.println("testTable:  "+testTable);
-			model.put("num", 0);
-			model.put("list", testTable);
-			model.put("demo", "0601@163.com");
+		if(loginState.equals("yes")){
+			//已登录,跳转到主页面
 			
+			model.put("demo", "1577467@163.com");
+			return "index";
 		}else{
-			System.out.println("POST请求..");
-			ArrayList listId = new ArrayList();
-			//调用数据库
-			List<test> testList = testServiceImpl.getTestList();
-			//条数
-			double count;
-			for (count = 1; count <= 5; count++) {
-				//listId
-			}
-			//获取页数
-			int num = utils.getCount(count);
-			//填充视图
-			model.put("num", num);
-			model.put("list",testList);
-			model.put("demo", "0601@163.com");
+			//未登录,跳转到登录页
+			
+			return "Login";
 		}
-		return "index";
-	}
-	
-	
-	/**
-	 * 
-	 * 手机号登录
-	 */
-	public String LogIn(){
 		
-		return null;
-	}
-	
-	/**
-	 * 
-	 * 项目注册
-	 */
-	public String Register(){
-		
-		return null;
 	}
 	
 }

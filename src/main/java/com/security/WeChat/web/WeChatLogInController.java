@@ -36,12 +36,20 @@ public class WeChatLogInController extends FinalUtils {
 	 * 注册的Controller层
 	 * @param request
 	 * @param model
+	 * @param repassword 确认密码
 	 * @return 登录界面
 	 * 
 	 */
 	@GetMapping("/register")
 	@SuppressWarnings("all")
-	public String Register(HttpServletRequest request,Map<String, Object> model,User users){
+	public String Register(HttpServletRequest request,Map<String, Object> model,User users,String repassword){
+		
+		//密码校验
+		if(!users.getPassword().equals(repassword)){
+			logger.error("/register : 密码与确认密码不一致..");
+			
+			return "Regist";
+		}
 		
 		if(utils.Get(request)){
 			
@@ -49,7 +57,7 @@ public class WeChatLogInController extends FinalUtils {
 		}else{
 			//记录IP:
 			String ip = utils.getIp(request);
-			logger.info("IP:    "+ip);
+			logger.info("/register: IP:  "+ip);
 			
 			//调用业务层
 			logger.info("/register");
@@ -63,7 +71,6 @@ public class WeChatLogInController extends FinalUtils {
 			
 			logger.info("/register: YES");
 			
-			//model.put("demo", "0601@163.com");
 			return "Login";
 		}
 	}
@@ -81,10 +88,10 @@ public class WeChatLogInController extends FinalUtils {
 	@SuppressWarnings("all")
 	public String LogIn(HttpServletRequest request,Map<String, Object> model,User users){
 		
-		/*if(utils.Get(request)){
+		if(utils.Get(request)){
 			
 			return "Login";
-		}else{*/
+		}else{
 			
 			//模拟登录效果
 			users.setPhone1(130);
@@ -99,10 +106,6 @@ public class WeChatLogInController extends FinalUtils {
 			try {
 				weChatLogInServiceImpl.LogIn(users);
 				utils.login_State(request,users);
-				
-				//查看Session中登录状态
-				String Phone = users.getPhone1()+"";
-				Object attribute = request.getSession().getAttribute(Phone);
 				
 				logger.info(utils.getTime()+":  "+users.getPhone1()+"登入到系统..");
 				
@@ -120,7 +123,7 @@ public class WeChatLogInController extends FinalUtils {
 			 */
 			model.put("demo", "0601@163.com");
 			return "index";
-		//}
+		}
 	}
 	
 	
@@ -142,7 +145,7 @@ public class WeChatLogInController extends FinalUtils {
 		
 		//查看Session中登录状态
 		String Phone = users.getPhone1()+"";
-		Object attribute = request.getSession().getAttribute(Phone);
+		Object attribute = request.getSession().getAttribute("loginState");
 		logger.info("登录状态:    "+attribute);
 		
 		return "Login";

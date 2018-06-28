@@ -137,6 +137,7 @@ public class Utils {
 		HttpSession session = request.getSession();
 		String SessionPhone = user.getPhone1()+"";
 		session.setAttribute(SessionPhone, YES);
+		session.setAttribute("loginState", YES);
 		//设置Session的失效时间
 		session.setMaxInactiveInterval(60 * 60);
 		
