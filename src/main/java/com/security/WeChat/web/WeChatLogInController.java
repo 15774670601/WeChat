@@ -44,23 +44,25 @@ public class WeChatLogInController extends FinalUtils {
 	@SuppressWarnings("all")
 	public String Register(HttpServletRequest request,Map<String, Object> model,User users,String repassword){
 		
-		//密码校验
-		if(!users.getPassword().equals(repassword)){
-			logger.error("/register : 密码与确认密码不一致..");
-			
-			return "Regist";
-		}
-		
 		if(utils.Get(request)){
 			
 			return "Regist";
 		}else{
+			
+			//密码校验
+			if(!users.getPassword().equals(repassword)){
+				logger.error("/register : 密码与确认密码不一致..");
+				
+				return "Regist";
+			}
+			
 			//记录IP:
 			String ip = utils.getIp(request);
 			logger.info("/register: IP:  "+ip);
 			
 			//调用业务层
 			logger.info("/register");
+			
 			try {
 				weChatLogInServiceImpl.Register(users);
 				
@@ -88,10 +90,10 @@ public class WeChatLogInController extends FinalUtils {
 	@SuppressWarnings("all")
 	public String LogIn(HttpServletRequest request,Map<String, Object> model,User users){
 		
-		if(utils.Get(request)){
+		/*if(utils.Get(request)){
 			
 			return "Login";
-		}else{
+		}else{*/
 			
 			//模拟登录效果
 			users.setPhone1(130);
@@ -116,14 +118,8 @@ public class WeChatLogInController extends FinalUtils {
 			
 			logger.info("/login: YES");
 			
-			
-			/**
-			 * 修改页面后要记得删除
-			 * 
-			 */
-			model.put("demo", "0601@163.com");
 			return "index";
-		}
+		//}
 	}
 	
 	

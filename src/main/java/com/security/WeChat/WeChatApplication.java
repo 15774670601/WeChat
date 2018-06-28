@@ -75,6 +75,10 @@ public class WeChatApplication {
 		//获取到登录信息
 		String loginState = (String)request.getSession().getAttribute("loginState");
 		
+		if(loginState == null){
+			return "Login";
+		}
+		
 		if(loginState.equals("yes")){
 			//已登录,跳转到主页面
 			
