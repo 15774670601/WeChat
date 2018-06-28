@@ -11,7 +11,7 @@
 	<meta content="false" id="twcClient" name="twcClient" />
 	<link type="text/css" rel="stylesheet" href="css/v2/style.css">
 	<link rel="apple-touch-icon-precomposed" href="../../images/ehaier-icon.png"/>	
-	<link rel="shortcut icon" type="image/x-icon" href="../../images/ehaier-icon.png"/>  
+	<link rel="shortcut icon" type="image/x-icon" href="../../images/ehaier-icon.png"/>
 	<title>用户登录</title>
 <link type="text/css" rel="stylesheet" href="css/v2/member.css">
 
@@ -26,8 +26,8 @@
 <div class="Login">
   <div class="Login_top">
     <ul>
-      <li class="cur"><A href="toMemberLogin.html">登录</A></li>
-      <li><A href="toMemberRegist.html">注册</A></li>
+      <li class="cur"><A href="/Regist">登录</A></li>
+      <li><A href="/Login">注册</A></li>
     </ul>
   </div>
   <div> 
@@ -35,7 +35,7 @@
       <form id="loginForm" action="/mobile/member/memberLogin.html" method="post">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td height="60" align="center" valign="middle"><input type="text" id="mobileNum" value="" name="mobileNum" placeholder="手机号" class="login_wbk"></td>
+            <td height="60" align="center" valign="middle"><input type="text" id="mobileNum" value="" name="phone1" placeholder="手机号" class="login_wbk"></td>
           </tr>
           <tr>
             <td height="60" align="center" valign="middle"><input type="password" id="password" name="password" placeholder="密码"  class="login_wbk"></td>

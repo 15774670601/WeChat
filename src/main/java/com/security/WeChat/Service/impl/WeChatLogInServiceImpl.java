@@ -23,7 +23,7 @@ public class WeChatLogInServiceImpl extends FinalUtils implements WeChatLogInSer
 	UserMapper userMapper;
 	
 	/**
-	 * 注册业务层方法实现
+	 * 注册业务层方法实现-Master
 	 * 
 	 */
 	@Override
@@ -46,44 +46,7 @@ public class WeChatLogInServiceImpl extends FinalUtils implements WeChatLogInSer
 			//调用Mybatis接口
 			userMapper.Register(user);
 			
-			//测试
-			logger.info("master");
-			
-			//判断是否存在第一个slave
-			if(user.getPhone2() != null || user.getPhone2() != 0){
-				user.setUUID(uuidTime);
-				//设置activation字段(激活状态)
-				user.setActivation(SUBMISSION);
-				//设置identity字段(主从关系)
-				user.setIdentity(Slave);
-				//设置phone
-				user.setPhone1(user.getPhone2());
-				//设置初始密码为admin
-				user.setPassword(utils.md5Password("admin"));
-				//调用Mybatis接口
-				userMapper.Register(user);
-				
-				//测试
-				logger.info("slave1");
-			}
-			
-			//判断是否存在第二个slave
-			if(user.getPhone3() != null || user.getPhone3() != 0){
-				user.setUUID(uuidTime);
-				//设置activation字段(激活状态)
-				user.setActivation(SUBMISSION);
-				//设置identity字段(主从关系)
-				user.setIdentity(Slave);
-				//设置phone
-				user.setPhone1(user.getPhone3());
-				//设置初始密码为admin
-				user.setPassword(utils.md5Password("admin"));
-				//调用Mybatis接口
-				userMapper.Register(user);
-				
-				//测试
-				logger.info("slave2");
-			}
+			//SlaveRegister(user);
 			
 			return true;
 			
@@ -96,7 +59,55 @@ public class WeChatLogInServiceImpl extends FinalUtils implements WeChatLogInSer
 
 	}
 	
-	
+	/**
+	 * Slave用户注册方法
+	 * @param user
+	 * @return
+	 */
+	@Override
+	public Boolean SlaveRegister(User user) {
+		
+		//获取UUID字段值
+		String uuidTime = utils.getUUIDTime();
+		
+		//判断是否存在第一个slave
+		if(user.getPhone2() != null || user.getPhone2() != 0){
+			user.setUUID(uuidTime);
+			//设置activation字段(激活状态)
+			user.setActivation(SUBMISSION);
+			//设置identity字段(主从关系)
+			user.setIdentity(Slave);
+			//设置phone
+			user.setPhone1(user.getPhone2());
+			//设置初始密码为admin
+			user.setPassword(utils.md5Password("admin"));
+			//调用Mybatis接口
+			userMapper.Register(user);
+			
+			//测试
+			logger.info("slave1");
+		}
+		
+		//判断是否存在第二个slave
+		if(user.getPhone3() != null || user.getPhone3() != 0){
+			user.setUUID(uuidTime);
+			//设置activation字段(激活状态)
+			user.setActivation(SUBMISSION);
+			//设置identity字段(主从关系)
+			user.setIdentity(Slave);
+			//设置phone
+			user.setPhone1(user.getPhone3());
+			//设置初始密码为admin
+			user.setPassword(utils.md5Password("admin"));
+			//调用Mybatis接口
+			userMapper.Register(user);
+			
+			//测试
+			logger.info("slave2");
+		}
+		
+		return null;
+	}
 	
 	/**
 	 * 登录业务层方法实现

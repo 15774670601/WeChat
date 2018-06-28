@@ -36,10 +36,10 @@
 				
 				<div>
 					<div class="Login_bottom">
-						<form id="registForm" action="/mobile/member/memberRegist.html" onSubmit="return checkRegForm()" method="post" enctype="multipart/form-data">
+						<form id="registForm" action="/register" onSubmit="return checkRegForm()" method="post" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<tr>
-									<td height="60" align="left" valign="middle"><input type="text" value="" id="mobileRegNum" name="mobileRegNum" placeholder="手机号" class="login_wbk">
+									<td height="60" align="left" valign="middle"><input type="text" value="" id="mobileRegNum" name="phone1" placeholder="手机号" class="login_wbk">
 										<span id="mobileNumMsg"></span></td>
 								</tr>
 								<tr>

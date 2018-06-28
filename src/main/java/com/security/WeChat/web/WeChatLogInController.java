@@ -42,25 +42,30 @@ public class WeChatLogInController extends FinalUtils {
 	@GetMapping("/register")
 	@SuppressWarnings("all")
 	public String Register(HttpServletRequest request,Map<String, Object> model,User users){
-
-		//记录IP:
-		String ip = utils.getIp(request);
-		logger.info("IP:    "+ip);
 		
-		//调用业务层
-		logger.info("/register");
-		try {
-			weChatLogInServiceImpl.Register(users);
+		if(utils.Get(request)){
 			
-		} catch (Exception e) {
-			logger.error("/register: ERROR:  "+e);
+			return "Regist";
+		}else{
+			//记录IP:
+			String ip = utils.getIp(request);
+			logger.info("IP:    "+ip);
 			
+			//调用业务层
+			logger.info("/register");
+			try {
+				weChatLogInServiceImpl.Register(users);
+				
+			} catch (Exception e) {
+				logger.error("/register: ERROR:  "+e);
+				
+			}
+			
+			logger.info("/register: YES");
+			
+			//model.put("demo", "0601@163.com");
+			return "Login";
 		}
-		
-		logger.info("/register: YES");
-		
-		model.put("demo", "0601@163.com");
-		return "index";
 	}
 	
 	
@@ -76,29 +81,71 @@ public class WeChatLogInController extends FinalUtils {
 	@SuppressWarnings("all")
 	public String LogIn(HttpServletRequest request,Map<String, Object> model,User users){
 		
+		/*if(utils.Get(request)){
+			
+			return "Login";
+		}else{*/
+			
+			//模拟登录效果
+			users.setPhone1(130);
+			users.setPassword("admin");
+	
+			//记录IP:
+			String ip = utils.getIp(request);
+			logger.info("IP:    "+ip);
+			
+			//跳转业务层
+			logger.info("/login");
+			try {
+				weChatLogInServiceImpl.LogIn(users);
+				utils.login_State(request,users);
+				
+				//查看Session中登录状态
+				String Phone = users.getPhone1()+"";
+				Object attribute = request.getSession().getAttribute(Phone);
+				
+				logger.info(utils.getTime()+":  "+users.getPhone1()+"登入到系统..");
+				
+			} catch (Exception e) {
+				logger.error("/login: ERROR:  "+e);
+				
+			}
+			
+			logger.info("/login: YES");
+			
+			
+			/**
+			 * 修改页面后要记得删除
+			 * 
+			 */
+			model.put("demo", "0601@163.com");
+			return "index";
+		//}
+	}
+	
+	
+	
+	/**
+	 * 简单的测试方法
+	 * @param request
+	 * @param model
+	 * @param users
+	 * @return
+	 */
+	@GetMapping("/demo")
+	@SuppressWarnings("all")
+	public String Demo(HttpServletRequest request,Map<String, Object> model,User users){
+		
 		//模拟登录效果
 		users.setPhone1(130);
 		users.setPassword("admin");
-
-		//记录IP:
-		String ip = utils.getIp(request);
-		logger.info("IP:    "+ip);
 		
-		//跳转业务层
-		logger.info("/login");
-		try {
-			weChatLogInServiceImpl.LogIn(users);
-			logger.info(utils.getTime()+":  "+users.getPhone1()+"登入到系统..");
-			
-		} catch (Exception e) {
-			logger.error("/login: ERROR:  "+e);
-			
-		}
+		//查看Session中登录状态
+		String Phone = users.getPhone1()+"";
+		Object attribute = request.getSession().getAttribute(Phone);
+		logger.info("登录状态:    "+attribute);
 		
-		logger.info("/login: YES");
-		
-		model.put("demo", "0601@163.com");
-		return "index";
+		return "Login";
 	}
 	
 }

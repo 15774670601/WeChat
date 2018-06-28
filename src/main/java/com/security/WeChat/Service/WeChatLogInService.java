@@ -11,11 +11,16 @@ import com.security.WeChat.bean.User;
 public interface WeChatLogInService {
 	
 	/**
-	 * 注册
+	 * Master注册
 	 * @return 布尔
 	 */
 	public Boolean Register(User user);
 	
+	/**
+	 * Slave注册
+	 * @return 布尔
+	 */
+	public Boolean SlaveRegister(User user);
 	
 	/**
 	 * 登录

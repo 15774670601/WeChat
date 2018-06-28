@@ -7,12 +7,17 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import com.security.WeChat.bean.User;
 
 public class Utils {
 	
 	private final String MD51 = "MDfrom字符";
 	
 	private final String MD52 = "#【GSKJ】#";
+	
+	private final String YES = "yes";
 	
 	/**
 	 * 获取当前系统时间(java.utils)
@@ -121,4 +126,20 @@ public class Utils {
 	  	}
 	  	return ip;
   	}
+	
+	/**
+	 * 在Session中存入一个令牌做标记
+	 * loginState = yes
+	 * 
+	 */
+	public void login_State(HttpServletRequest request,User user){
+		//将用户存入Session
+		HttpSession session = request.getSession();
+		String SessionPhone = user.getPhone1()+"";
+		session.setAttribute(SessionPhone, YES);
+		//设置Session的失效时间
+		session.setMaxInactiveInterval(60 * 60);
+		
+		return;
+	}
 }
