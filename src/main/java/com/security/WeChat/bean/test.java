@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 //test的实体
 @Component
+@SuppressWarnings("all")
 @ConfigurationProperties(prefix="Test")  //（配置文件注入）这个注解用于在配置文件中进行注入。
 @PropertySource(value={"classpath:test.properties"})// 这个注解是读取指定的配置文件。
 public class test {

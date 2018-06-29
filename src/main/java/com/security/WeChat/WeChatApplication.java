@@ -42,6 +42,7 @@ import com.security.WeChat.utils.Utils;
 @Controller	//使用模板引擎需要使用@Controller注解
 @SpringBootApplication
 @MapperScan("com.security.WeChat.Dao")
+@SuppressWarnings("all")
 public class WeChatApplication {
 	
 	@Autowired  

@@ -9,6 +9,7 @@ import com.security.WeChat.WeChatApplication;
 import com.security.WeChat.Service.TestServiceImpl;
 
 //通过类的整合工具类
+@SuppressWarnings("all")
 public class FinalUtils {
 	
 	/**
@@ -35,6 +36,17 @@ public class FinalUtils {
 	 * 常量: 返回slave
 	 */
 	public final String Slave = "slave";
+	
+	/**
+	 * 常量: 分类未激活
+	 */
+	public final int CLASSIFICATION_NOT_ACTIVE = 0;
+	
+	/**
+	 * 常量: 分类已激活
+	 */
+	public final int CLASSIFICATION_ALREADY_ACTIVATED = 1;
+
 	
 	/**
 	 * JdbcTemplate

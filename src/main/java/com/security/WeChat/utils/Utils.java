@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.security.WeChat.bean.User;
 
+@SuppressWarnings("all")
 public class Utils {
 	
 	private final String MD51 = "MDfrom字符";
@@ -130,6 +131,7 @@ public class Utils {
 	/**
 	 * 在Session中存入一个令牌做标记
 	 * loginState = yes
+	 * 时效时间30天整
 	 * 
 	 */
 	public void login_State(HttpServletRequest request,User user){
@@ -139,7 +141,7 @@ public class Utils {
 		session.setAttribute(SessionPhone, YES);
 		session.setAttribute("loginState", YES);
 		//设置Session的失效时间
-		session.setMaxInactiveInterval(60 * 60);
+		session.setMaxInactiveInterval(2592000);
 		
 		return;
 	}

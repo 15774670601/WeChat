@@ -20,6 +20,7 @@ import com.security.WeChat.utils.FinalUtils;
 @Slf4j
 @Controller	//使用模板引擎需要使用@Controller注解
 @SpringBootApplication
+@SuppressWarnings("all")
 @MapperScan("com.security.WeChat.Dao")
 public class WeChatLogInController extends FinalUtils {
 	
@@ -90,10 +91,10 @@ public class WeChatLogInController extends FinalUtils {
 	@SuppressWarnings("all")
 	public String LogIn(HttpServletRequest request,Map<String, Object> model,User users){
 		
-		/*if(utils.Get(request)){
+		if(utils.Get(request)){
 			
 			return "Login";
-		}else{*/
+		}else{
 			
 			//模拟登录效果
 			users.setPhone1(130);
@@ -119,7 +120,7 @@ public class WeChatLogInController extends FinalUtils {
 			logger.info("/login: YES");
 			
 			return "index";
-		//}
+		}
 	}
 	
 	
@@ -138,13 +139,27 @@ public class WeChatLogInController extends FinalUtils {
 		//模拟登录效果
 		users.setPhone1(130);
 		users.setPassword("admin");
+
+		//记录IP:
+		String ip = utils.getIp(request);
+		logger.info("IP:    "+ip);
 		
-		//查看Session中登录状态
-		String Phone = users.getPhone1()+"";
-		Object attribute = request.getSession().getAttribute("loginState");
-		logger.info("登录状态:    "+attribute);
+		//跳转业务层
+		logger.info("/login");
+		try {
+			weChatLogInServiceImpl.LogIn(users);
+			utils.login_State(request,users);
+			
+			logger.info(utils.getTime()+":  "+users.getPhone1()+"登入到系统..");
+			
+		} catch (Exception e) {
+			logger.error("/login: ERROR:  "+e);
+			
+		}
 		
-		return "Login";
+		logger.info("/login: YES");
+		
+		return "index";
 	}
 	
 }
