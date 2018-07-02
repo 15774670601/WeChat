@@ -21,7 +21,8 @@
         <ojdbc6.version>11.2.0.3</ojdbc6.version>  
         <mail.version>1.4</mail.version>  
         <java.version>1.7</java.version>  
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <start-class>com.security.WeChat.WeChatApplication</start-class>
     </properties>  
   
     <dependencies>  
@@ -79,12 +80,12 @@
             <artifactId>gson</artifactId>  
         </dependency>  
 
-        <!-- 支持 @ConfigurationProperties 注解 -->  
-        <dependency>  
-            <groupId>org.springframework.boot</groupId>  
-            <artifactId>spring-boot-configuration-processor</artifactId>  
-            <optional>true</optional>  
-        </dependency>  
+        <!-- 支持 @ConfigurationProperties 注解 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
   
         <dependency>  
             <groupId>junit</groupId>  
@@ -196,8 +197,9 @@
         	<version>2.11.0</version>
         </dependency>
     </dependencies>  
-    <build>  
-        <finalName>SpringBootTestJar</finalName>  
+    <build>
+        <!-- 生成的jar包名称 -->  
+        <finalName>WeChatJar</finalName>  
   		
         <resources>  
             <resource>  
@@ -245,7 +247,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <!--这里需要写SpringBoot的主方法所在类的路径--> 
                 <configuration>
-                    <mainClass>com.example.SpringBootText.SpringBootTestApplication</mainClass>  
+                    <mainClass>com.security.WeChat.WeChatApplication</mainClass>  
                 </configuration>  
                 <executions>
                     <execution>

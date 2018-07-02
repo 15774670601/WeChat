@@ -81,7 +81,13 @@ public class WeChatIndexController extends FinalUtils{
 		model.put("leftListNumber", leftList.size());
 		//左侧边栏分类
 		for (int i = 1; i < 9; i++) {
-			model.put("leftList"+i, leftList.get(i-1).getName());
+			try {
+				model.put("leftList"+i, leftList.get(i-1).getName());
+			} catch (Exception e) {
+				logger.error("/index:  左侧边栏: 如果是:(IndexOutOfBoundsException) 激活的分类不足8个  \n\r"+e);
+				break;
+			}
+			
 		}
 		//右窗体Model返回
 		for (int i = 1; i < listWindow.size(); i++) {

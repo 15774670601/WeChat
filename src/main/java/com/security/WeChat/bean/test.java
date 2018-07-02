@@ -13,9 +13,8 @@ import org.springframework.stereotype.Component;
 @PropertySource(value={"classpath:test.properties"})// 这个注解是读取指定的配置文件。
 public class test {
 	
-	private String name;	
+	private String name;
 	private String age;
-	//@Value("乱码? 不存在的!")   //（注解注入）这个注解用于直接注入。
 	private String pz;
 	private Integer id;
 	
